@@ -1,8 +1,5 @@
 //require('dotenv').config({path: './env'})
-
 import dotenv from 'dotenv'
-import mongoose from 'mongoose';
-import { DB_NAME } from './constants.js';
 import connectDB from './db/index.js'
 
 dotenv.config({
@@ -10,7 +7,19 @@ dotenv.config({
 })
 
 
-connectDB()
+connectDB()//async function of db connection returns a promise. hence use then catch.
+.then( () => {
+    app.on("errror",(error) => {
+        console.log("ERRR:",error);
+        throw error
+    })
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`Server is running in port: ${process.env.PORT}`)
+    })
+})
+.catch((error) => {
+        console.log("MongoDB connection failed !!",error)
+})
 
 
 
