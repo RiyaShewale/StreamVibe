@@ -9,7 +9,7 @@ dotenv.config({
 
 connectDB()//async function of db connection returns a promise. hence use then catch.
 .then( () => {
-    app.on("errror",(error) => {
+    app.on("error",(error) => {
         console.log("ERRR:",error);
         throw error
     })
