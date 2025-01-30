@@ -1,6 +1,7 @@
 import express, { urlencoded } from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import listEndpoints from 'express-list-endpoints'; // ✅ Make sure this is imported
 
 const app = express()
 app.use(cors({  //use is used for configuration and setting up middlewares
@@ -22,8 +23,10 @@ app.use(express.static("public"))//to store data received as it is like pdf or f
 app.use(cookieParser())
  
 
+// import routes
+import userRouter from './routes/user.routes.js'
 
-
+app.use("/api/v1/users" , userRouter)
 
 
 

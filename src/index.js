@@ -1,19 +1,24 @@
 //require('dotenv').config({path: './env'})
+import express from 'express';
 import dotenv from 'dotenv'
 import connectDB from './db/index.js'
+import {app} from './app.js'
+
 
 dotenv.config({
     path: './env'
 })
 
 
+
+
 connectDB()//async function of db connection returns a promise. hence use then catch.
 .then( () => {
     app.on("error",(error) => {
         console.log("ERRR:",error);
-        throw error
+        throw error;
     })
-    app.listen(process.env.PORT || 8000, () => {
+    app.listen(process.env.PORT || 8080, () => {
         console.log(`Server is running in port: ${process.env.PORT}`)
     })
 })
