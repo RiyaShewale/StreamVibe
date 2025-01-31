@@ -54,7 +54,7 @@ const userSchema = new Schema({
 userSchema.pre("save", async function (next) { // this encryption and decryption take time hence the func has been made async.
     if(this.isModified("password"))// we want ot encrypt the password only if it has been modified. no if some othe r field like name or avatar is modified
     {
-        this.password = bcrypt.hash(this.password, 10)// hash(what to encrypt , howo many rounds of encryption)
+        this.password = await bcrypt.hash(this.password, 10)// hash(what to encrypt , howo many rounds of encryption)
     }
     next()
 })
