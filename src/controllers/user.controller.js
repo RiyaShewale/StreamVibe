@@ -157,8 +157,8 @@ const logoutUser = asyncHandler (async (req , res) => {
     await User.findByIdAndUpdate(
         req.user._id,
         {
-            $set: {
-                refreshToken: undefined
+            $unset: {
+                refreshToken: 1
             }
         },
         {
@@ -187,13 +187,14 @@ const refreshAccessToken = asyncHandler ( async (req, res) => {
         throw new ApiError(401, "unauthorized access")
 
     }
-
+    console.log("token:",incomingRefreshToken)
    try {
      const decodedToken = jwt.verify(
          incomingRefreshToken,
          process.env.REFRESH_TOKEN_SECRET
      )
  
+     console.log("decoded token:",  decodedToken)
      const user = await User.findById(decodedToken?._id)
  
      if(!user) {
