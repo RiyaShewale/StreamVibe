@@ -1,5 +1,5 @@
 # StreamVibe
-StreamVibe - A YouTube Backend Clone
+
 **Status:** This project is currently in progress.
 
 This repository contains the backend for **StreamVibe**, a YouTube clone application. The backend is built with Node.js, Express, and MongoDB, providing the foundational features for a modern video-sharing platform.
